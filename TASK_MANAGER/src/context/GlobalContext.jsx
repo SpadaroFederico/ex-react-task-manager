@@ -1,35 +1,24 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext } from "react";
+import useTasks from '../hooks/UseTasks'; // Importa il custom hook
 
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  const [tasks, setTasks] = useState([]);
-  const apiUrl = import.meta.env.VITE_API_URL;
-  console.log("🌍 URL API:", `${apiUrl}/tasks`);
+  // Usa il custom hook per gestire la logica
+  const { tasks, setTasks, addTask, removeTask, updateTask, fetchTasks } = useTasks();
 
-
-      useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const res = await fetch(`${apiUrl}/tasks`);
-        if (!res.ok) throw new Error("Errore nel caricamento dei task");
-        const data = await res.json();
-        setTasks(data);
-        console.log("Task caricati:", data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchTasks();
-  }, [apiUrl]);
-
-    return (
-    <GlobalContext.Provider value={{ tasks, setTasks }}>
+  return (
+    <GlobalContext.Provider
+      value={{
+        tasks,
+        setTasks,
+        addTask,
+        removeTask,
+        updateTask,
+        fetchTasks,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
 }
-
-
-
-
