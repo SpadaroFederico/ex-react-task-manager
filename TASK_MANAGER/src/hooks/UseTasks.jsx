@@ -16,14 +16,37 @@ export default function useTasks() {
       console.error("❌ Errore useTasks:", error);
     }
   };
-
+  
   // Carica i task al primo render
   useEffect(() => {
     fetchTasks();
   }, [apiUrl]);
 
   // Funzioni da esporre (per ora vuote)
-  const addTask = (task) => {};       // POST /tasks
+  const addTask = async (newTask) => {
+    try {
+        const res = await fetch (`${apiUrl}/tasks`, {
+            method: "POST",
+            headers: {
+                "Content-type" : "application/json",
+            },
+            body: JSON.stringify (newTask),
+        });
+
+        const result = await res.json();
+
+        if(result.success) {
+            setTasks((prevTasks) => [...prevTasks, result.task]);
+        }else{
+            throw new Error(result.message);
+        }
+
+    } catch (error) {
+        console.error("Errore durante l'aggiunta del task:" ,error);
+        throw error;
+    }
+  };       
+
   const removeTask = (taskId) => {};  // DELETE /tasks/:id
   const updateTask = (task) => {};    // PUT /tasks/:id
 
