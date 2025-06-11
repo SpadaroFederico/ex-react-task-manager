@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // variabile per gestire lo stile in base allo stato del task
 
@@ -25,13 +26,17 @@ const getStatusStyle = (status) => {
 const TaskRow = React.memo(({ task }) => {
     return (
         <tr>
-            <td>{task.title}</td>
+            <td>
+                <Link to={`/task/${task.id}`}>{task.title}</Link>
+            </td>
             <td>
                 <div style={getStatusStyle(task.status)}>
-                    {task.status}
+                    <Link to={`/task/${task.id}`}>{task.status}</Link>
                 </div>
             </td>
-            <td>{new Date (task.createdAt).toLocaleDateString()}</td>
+            <td>
+                <Link to={`/task/${task.id}`}>{new Date (task.createdAt).toLocaleDateString()}</Link>
+            </td>
         </tr>
     );
 });
