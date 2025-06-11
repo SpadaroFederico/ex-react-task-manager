@@ -1,0 +1,20 @@
+.nav-container{
+    background: linear-gradient(45deg,#7462ff, #00c6ff);
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.link1{
+    padding: 15px;
+    background-color: white;
+    margin-left: 80px;
+    font-size: 25px;
+}
+
+.link2 {
+    padding: 15px;
+    background-color: white;
+    margin-right: 80px;
+    font-size: 25px;
+}

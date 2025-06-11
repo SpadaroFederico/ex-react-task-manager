@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.task-table{
+    width: 80%;
+    text-align: center;
+    border: black 2px solid;
+    border-radius: 20px;
+}
+
+.task-table thead{
+    border-radius: 20px;
+    background-color: #7462ff;
+    color: white;
+    font-size: 20px;
+}
