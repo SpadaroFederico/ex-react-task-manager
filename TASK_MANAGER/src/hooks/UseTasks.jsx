@@ -36,7 +36,7 @@ export default function useTasks() {
         const result = await res.json();
 
         if(result.success) {
-            setTasks((prevTasks) => [...prevTasks, result.task]);
+            setTasks(prevTasks );
         }else{
             throw new Error(result.message);
         }
@@ -47,7 +47,25 @@ export default function useTasks() {
     }
   };       
 
-  const removeTask = (taskId) => {};  // DELETE /tasks/:id
+  const removeTask = async (taskId) => {
+    try {
+        const res = await fetch (`${apiUrl}/tasks/${taskId}`, {
+            method: "DELETE",
+        })
+
+    const result = await res.json()
+
+    if (result.success) {
+        setTasks((prevTasks) => prevTasks.filter(t => t.id !== taskId))
+    }else{
+        throw new Error(result.message);
+    }
+
+    } catch (error) {
+        console.error("Errore durante la rimozione del task:" ,error);
+        throw error;
+    }
+  };  // DELETE /tasks/:id
   const updateTask = (task) => {};    // PUT /tasks/:id
 
   return {
