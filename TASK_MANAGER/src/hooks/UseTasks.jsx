@@ -66,7 +66,32 @@ export default function useTasks() {
         throw error;
     }
   };  // DELETE /tasks/:id
-  const updateTask = (task) => {};    // PUT /tasks/:id
+
+
+  const updateTask = async (updatedTask) => {
+  try {
+    const res = await fetch(`${apiUrl}/tasks/${updatedTask.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t.id === updatedTask.id ? result.task : t))
+      );
+    } else {
+      throw new Error(result.message);
+    }
+  } catch (error) {
+    console.error("Errore durante l'aggiornamento del task:", error);
+    throw error;
+  }
+};
 
   return {
     tasks,

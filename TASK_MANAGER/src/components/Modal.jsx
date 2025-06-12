@@ -8,7 +8,7 @@ function Modal ({show, title, content, onConfirm, onClose, confirmText="Conferma
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 <h2>{title}</h2>
-                <p>{content}</p>
+                <div>{content}</div>
 
                 <div style={styles.actions}>
                     <button onClick={onClose} style={styles.cancel}>Annulla</button>                    
