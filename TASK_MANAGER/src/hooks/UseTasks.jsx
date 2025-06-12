@@ -23,29 +23,29 @@ export default function useTasks() {
   }, [apiUrl]);
 
   // Funzioni da esporre (per ora vuote)
-  const addTask = async (newTask) => {
-    try {
-        const res = await fetch (`${apiUrl}/tasks`, {
-            method: "POST",
-            headers: {
-                "Content-type" : "application/json",
-            },
-            body: JSON.stringify (newTask),
-        });
+ const addTask = async (newTask) => {
+  try {
+    const res = await fetch(`${apiUrl}/tasks`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newTask),
+    });
 
-        const result = await res.json();
+    const result = await res.json();
 
-        if(result.success) {
-            setTasks(prevTasks );
-        }else{
-            throw new Error(result.message);
-        }
-
-    } catch (error) {
-        console.error("Errore durante l'aggiunta del task:" ,error);
-        throw error;
+    if (result.success) {
+      setTasks((prevTasks) => [...prevTasks, result.task]);
+    } else {
+      throw new Error(result.message);
     }
-  };       
+
+  } catch (error) {
+    console.error("Errore durante l'aggiunta del task:", error);
+    throw error;
+  }
+};
 
   const removeTask = async (taskId) => {
     try {

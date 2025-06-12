@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import useTasks from '../hooks/UseTasks';
+import Modal from '../components/Modal';
 
 function TaskDetails (){
 
@@ -12,14 +13,13 @@ function TaskDetails (){
     const task = tasks.find(t => t.id == id);
     const navigate = useNavigate ();
     const { removeTask } = useTasks();
+    const [showModal, setShowModal] = useState(false);
     
     if(!task){
             return <p>task non trovata</p>
         }
 
-    const handleDelete = async (e) => {
-        e.preventDefault()
-        
+    const handleDelete = async () => {
         try {
             await removeTask(task.id);
             alert("task eliminata con successo");
@@ -35,8 +35,18 @@ function TaskDetails (){
             <p>{task.description}</p>
             <p>{task.status}</p>
             <p>{task.createdAt}</p>
-            <button onClick={handleDelete}>RIMUOVI</button>
+            <button onClick={() => setShowModal(true)}>RIMUOVI</button>
+            <Modal
+                show={showModal}
+                title="Conferma eliminazione"
+                content={`Stai provando a eliminare il task: ${task.title}?`}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleDelete}
+                confirmText="Elimina"
+            />
         </div>
+
+        
     )
 };
 
