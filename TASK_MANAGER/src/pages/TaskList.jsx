@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import useTasks from '../hooks/UseTasks';
 import TaskRow from '../components/TaskRow';
+import '../assets/styles/TaskListStyle.css';
 
 function TaskList() {
   const { tasks } = useTasks();
@@ -58,13 +59,14 @@ function TaskList() {
   return (
     <>
       <input
+        className='input-search'
         type="text"
         placeholder="Cerca per titolo"
         onChange={(e) => debouncedSetQuery(e.target.value)}
         style={{ marginBottom: "1rem", padding: "8px", width: "100%" }}
       />
 
-      <table>
+      <table className='general-table'>
         <thead>
           <tr>
             <th onClick={() => handleSort('title')}>Titolo</th>

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import useTasks from '../hooks/UseTasks';
+import '../assets/styles/AddTaskStyle.css';
 
 function AddTask() {
 
@@ -45,27 +46,35 @@ function AddTask() {
   };
 
   return (
-    <div>
+    <div className="general-container">
       <form onSubmit={handleSubmit}>
-        <input 
+        <div>
+        <input
+          className="title" 
           type="text" 
           placeholder="Titolo del Task" 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        </div>
         
         {error && <p style={{ color: "red" }}>{error}</p>}
         
-        <textarea 
-          ref={descriptionRef} 
-          type="text"
-          placeholder="descrizione del task"
-        />
-        <select ref={statusRef} type="text" placeholder="stato del Task">
-          <option value="To do">To do</option>
-          <option value="Doing">Doing</option>
-          <option value="Done">Done</option>
-        </select>
+        <div className="text-area">
+          <textarea 
+            ref={descriptionRef} 
+            type="text"
+            placeholder="descrizione del task"
+          />
+        </div>
+
+        <div className="select">
+          <select ref={statusRef} type="text" placeholder="stato del Task">
+            <option value="To do">To do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
         <button onClick={handleSubmit}>INVIA</button>
       </form>
     </div>

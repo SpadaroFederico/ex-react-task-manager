@@ -1,20 +1,27 @@
 .nav-container{
-    background: linear-gradient(45deg,#7462ff, #00c6ff);
-    height: 100px;
+    background: linear-gradient(45deg,#7462ff, #1d4bb8);
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.link1{
-    padding: 15px;
-    background-color: white;
+.link1 a{
+    padding: 33px;
     margin-left: 80px;
-    font-size: 25px;
+    font-size: 20px;
+    color: black;
+    font-weight: 800;
 }
 
-.link2 {
-    padding: 15px;
-    background-color: white;
+.link2 a{
+    padding: 33px;
     margin-right: 80px;
-    font-size: 25px;
+    font-size: 20px;
+    color: black;
+    font-weight: 800;
 }
+
+.link1 :hover , .link2 :hover{
+    background-color: #1d4bb8;
+}
+

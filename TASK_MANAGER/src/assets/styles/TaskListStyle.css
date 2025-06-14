@@ -1,20 +1,55 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+/* TaskList.css */
+
+input[type="text"] {
+  margin-bottom: 1rem;
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
-.task-table{
-    width: 80%;
+.general-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.general-table th,
+.general-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.general-table th {
+  background-color: #1a95e7;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+  text-align: center;
+}
+
+.general-table tr {
+  border: black, 2px, solid;
+}
+
+.general-table th:hover {
+  background-color: #1d4bb8;
+}
+
+.general-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.general-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.input-search{
     text-align: center;
-    border: black 2px solid;
-    border-radius: 20px;
-}
-
-.task-table thead{
-    border-radius: 20px;
-    background-color: #7462ff;
-    color: white;
-    font-size: 20px;
+    height: 50px;
+    color: rgb(95, 93, 93);
 }

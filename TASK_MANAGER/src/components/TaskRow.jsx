@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../assets/styles/TaskRowStyle.css'
 
 // variabile per gestire lo stile in base allo stato del task
 
