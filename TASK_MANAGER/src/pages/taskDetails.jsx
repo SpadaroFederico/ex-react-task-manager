@@ -4,6 +4,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import useTasks from '../hooks/UseTasks';
 import Modal from '../components/Modal';
 import EditTaskModal from '../components/EditTaskModal';
+import '../assets/styles/TaskDetailsStyle.css'
 
 function TaskDetails() {
   const { tasks } = useContext(GlobalContext);
@@ -40,15 +41,16 @@ function TaskDetails() {
   };
 
   return (
-    <div>
+    <div className='task-details-container'>
       <h1>{task.title}</h1>
       <p>{task.description}</p>
       <p>{task.status}</p>
       <p>{task.createdAt}</p>
 
+    <div className='task-buttons'>
       <button onClick={() => setShowModal(true)}>Rimuovi Task</button>
       <button onClick={() => setIsEditModalOpen(true)}>Modifica Task</button>
-
+    </div>
       <EditTaskModal
         show={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
